@@ -5005,7 +5005,7 @@ if (PAYPAL_ENABLED and $get_set and @$_GET["cmd"] == "buy" and IMAGE != "") {
             "</form>" .
             "</body>";
     }
-} else if($type=='.mpo'){
+} else if($type!='mp4'){
     echo '<body onresize="updateSize()" onload="showGallery(' .
         (IMAGE_ID_IN_URL ? IMAGE_ID_IN_URL : "false") .
         ')" class="sfpg">' .
