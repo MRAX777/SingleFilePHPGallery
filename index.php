@@ -474,11 +474,11 @@ function sfpg_image_type($file)
 {
     $type = sfpg_ext($file);
     if (
-        $type == ".m2p4" or
-        $type == ".m2p4" or
+        $type == ".mp42" or
+        $type == ".mp42" or
         (MPO_FULL_IMAGE or MPO_STEREO_IMAGE) and $type == ".mpo"
     ) {
-        return "m2p4";
+        return "mp42";
     }
     if (
         $type == ".svg" or
@@ -1547,8 +1547,8 @@ function sfpg_image($image_dir, $image_file, $func, $download = false)
                     $new_full_img =
                         DATA_ROOT . "image/" . $image_dir . $image_file;
 
-                    if ($image_type == "m2p4") {
-                        echo file_get_contents($file);
+                    if ($image_type == "mp42") {
+                     //   readfilel($file);
                     }
 
                     if ($image_type == "webp") {
@@ -1682,8 +1682,8 @@ function sfpg_image($image_dir, $image_file, $func, $download = false)
                 imagewebp($new_image, $image_path_file, $jpeg_quality);
             }
 
-            if ($image_type == "m2p4") {
-                echo file_get_contents($file);
+            if ($image_type == "mp42") {
+               // echo file_get_contents($file);
             }
 
             if ($image_type == "jpeg") {
@@ -5005,7 +5005,7 @@ if (PAYPAL_ENABLED and $get_set and @$_GET["cmd"] == "buy" and IMAGE != "") {
             "</form>" .
             "</body>";
     }
-} else {
+} else if($type=='.mpo'){
     echo '<body onresize="updateSize()" onload="showGallery(' .
         (IMAGE_ID_IN_URL ? IMAGE_ID_IN_URL : "false") .
         ')" class="sfpg">' .
@@ -5021,6 +5021,56 @@ if (PAYPAL_ENABLED and $get_set and @$_GET["cmd"] == "buy" and IMAGE != "") {
         "</div>" .
         '<div id="box_image" class="box_image">' .
         '<img alt="" src="" id="full" class="full_image" onclick="closeImageView()" onmouseover="gebi(\'button_close\').className=\'sfpg_button_hover\'" onmouseout="gebi(\'button_close\').className=\'sfpg_button\'">' .
+        "</div>" .
+        '<div id="box_wait" class="box_wait">' .
+        '<div id="wait" class="wait"></div>' .
+        "</div>" .
+        '<div id="box_info" class="box_info">' .
+        '<div id="box_inner_info" class="box_inner_info"></div>' .
+        "</div>" .
+        '<div id="box_gallery" class="box_gallery">';
+    $banner_file = false;
+    if (file_exists(GALLERY_ROOT . GALLERY . DIR_BANNER_FILE)) {
+        $banner_file = GALLERY_ROOT . GALLERY . DIR_BANNER_FILE;
+    } elseif (
+        DIR_ROOT_BANNER_IN_SUBDIRS and
+        file_exists(GALLERY_ROOT . DIR_BANNER_FILE)
+    ) {
+        $banner_file = GALLERY_ROOT . DIR_BANNER_FILE;
+    }
+    if ($banner_file) {
+        echo '<div class="banner">' .
+            clean_html(@file_get_contents($banner_file)) .
+            "</div>";
+    } elseif (TEXT_BANNER) {
+        echo '<div class="banner">' . TEXT_BANNER . "</div>";
+    }
+    echo "</div>";
+    if (ADMIN === true) {
+        echo '<div id="box_admin" class="box_admin"></div>';
+        echo '<div id="box_data" class="box_data"></div>';
+    }
+    echo '<div id="box_overlay" class="box_overlay"></div>' .
+        '<div id="box_left" onclick="cycleImg(-1)" onmouseover="gebi(\'button_left\').className=\'sfpg_button_hover\'" onmouseout="gebi(\'button_left\').className=\'sfpg_button\'" class="box_hud"></div>' .
+        '<div id="box_right" onclick="cycleImg(1)" onmouseover="gebi(\'button_right\').className=\'sfpg_button_hover\'" onmouseout="gebi(\'button_right\').className=\'sfpg_button\'" class="box_hud"></div>' .
+        "</body>";
+}
+else {
+    echo '<body onresize="updateSize()" onload="showGallery(' .
+        (IMAGE_ID_IN_URL ? IMAGE_ID_IN_URL : "false") .
+        ')" class="sfpg">' .
+        '<div id="box_navi" class="box_navi">' .
+        '<table class="sfpg_disp">' .
+        '<tr><td class="navi">' .
+        '<div id="navi"></div>' .
+        "</td></tr>" .
+        '<tr><td class="menu">' .
+        '<div id="div_menu"></div>' .
+        "</td></tr>" .
+        "</table>" .
+        "</div>" .
+        '<div id="box_image" class="box_image">' .
+        '<video alt="" src="" id="full" class="full_image" onclick="closeImageView()" onmouseover="gebi(\'button_close\').className=\'sfpg_button_hover\'" onmouseout="gebi(\'button_close\').className=\'sfpg_button\'"><source src="" ></video>' .
         "</div>" .
         '<div id="box_wait" class="box_wait">' .
         '<div id="wait" class="wait"></div>' .
