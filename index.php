@@ -2,7 +2,7 @@
 
 /*
 
-		Single File PHP Gallery 4.11.0 (SFPG)
+		Single File PHP Gallery 4.11.1 (SFPG)
 
 		See EULA in readme.txt for commercial use
 		See readme.txt for configuration
@@ -17,7 +17,7 @@ error_reporting(defined("ERROR_REPORT") ? ERROR_REPORT : 0);
 
 //	----------- CONFIGURATION START ------------
 
-option("GALLERY_ROOT", "./g\/");
+option("GALLERY_ROOT", "./gallery/");
 option("DATA_ROOT", "./_sfpg_data/");
 option("PASSWORD", "");
 option("ADMIN", true); // WARNING - See description in readme.txt before setting to TRUE
