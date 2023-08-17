@@ -1,6 +1,6 @@
 
 
-		Single File PHP Gallery 4.11.0 (SFPG)
+		Single File PHP Gallery 4.11.2 (SFPG)
 
 		See END USER LICENSE AGREEMENT for commercial
 
@@ -77,7 +77,7 @@ FEATURES
  * 3D MPO red/cyan anaglyph and stereo image generation
  * Keyboard navigation
  * Option to add watermark to all images in gallery
- * Supports JPG, JPEG, PNG and GIF
+ * Supports JPG, JPEG, PNG, GIF, SVG, WEBP, and AVIF
  * Unlimited numbers of sub galleries
  * See configuration information for all features
 
@@ -147,7 +147,7 @@ ____________________________________________________________
 HOW TO USE / QUICK START
 
 The only thing you have to do is place a copy of the index.php file to any directory of your web.
-When this is done all images (jpg, jpeg, png, gif) and files if enabled, in that directory and all sub directories will be shown in the gallery.
+When this is done all images (jpg, jpeg, png, gif, webp, svg, avif) and files if enabled, in that directory and all sub directories will be shown in the gallery.
 
 By default the script will try to create a directory called "_sfpg_data" in which thumbnails and information is saved. If PHP only have write access in a certain directory, change the DATA_ROOT to point there.
 
